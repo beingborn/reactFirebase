@@ -47,6 +47,7 @@ function Card(props) {
       />
       <h4>{props.article.title}</h4>
       <p>{props.article.price}</p>
+      <button>버튼입니다</button>
     </div>
   );
 }
