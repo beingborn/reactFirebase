@@ -5,10 +5,14 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
 import data from "./data.js";
 import { useState } from "react";
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import Detail from "./routes/Detail.js"
+import About from "./routes/About.js"
 
 function App() {
   let [article, setArticle] = useState(data);
+  let navigate = useNavigate();
+
 
   return (
     <div className="App">
@@ -17,8 +21,8 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link onClick={()=>{navigate("/")}}>Home</Nav.Link>
+            <Nav.Link onClick={()=>{navigate("/detail/0")}}>Detail</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
@@ -36,8 +40,18 @@ function App() {
         </div>
         
       </> } />
-      <Route path="/detail" element={ <div>상세페이지임</div> } />
-      <Route path="/about" element={ <div>어바웃페이지임</div> } />
+      <Route path="/detail" element={ <Detail article={article} /> } />
+      <Route path="/detail/:id" element={ <Detail article={article}/> }/>
+      
+      <Route path="/about" element={ <About/> } >
+        <Route path="member" element={ <>회사멤버</> } />
+        <Route path="location" element={ <>회사위치</> } />
+      </Route>
+
+
+
+
+      <Route path="*" element={ <div>없는페이지임</div> } />
     </Routes>
 
  
@@ -47,7 +61,7 @@ function App() {
 
       <div className="footer">
         <Link to="/">홈</Link>
-        <Link to="/detail">상세페이지</Link>
+        <Link to="/detail/1">상세페이지</Link>
         <Link to="/event">이벤트페이지</Link>
       </div>
 {/* App */}
