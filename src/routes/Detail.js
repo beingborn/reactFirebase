@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 
 function Detail(props){
 
+// useEffect 는 html이 모두 렌더링 된 후 실행
 
-  useEffect(()=>{
-    console.log("안녕")
-  })
+
+let [alert, setAlert] = useState(true)
+useEffect(()=>{
+  setTimeout(()=>{ setAlert(false) }, 4000)
+}, [])
 
   let [count, setCount] = useState(0);
 
@@ -20,6 +23,13 @@ function Detail(props){
   <div className="container">
     {count}
     <button onClick={()=>{setCount( count + 1 )}}>버튼</button>
+    {
+    alert == true
+    ? <div className="alert alert-warning">
+        4초이내 구매시 할인
+      </div>
+    : null
+  }
   <div className="row">
     <div className="col-md-6">
       <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />

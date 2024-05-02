@@ -8,10 +8,12 @@ import { useState } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from "./routes/Detail.js"
 import About from "./routes/About.js"
+import axios from "axios";
 
 function App() {
   let [article, setArticle] = useState(data);
   let navigate = useNavigate();
+let [count , setCount] = useState(1)
 
 
   return (
@@ -37,6 +39,33 @@ function App() {
             return <Card article={article[i]} i={i} ></Card>
           })}
         </div>
+        {
+ count == 1 ? 
+ <button onClick={()=>{
+   setCount(count+1)
+   axios.get('https://codingapple1.github.io/shop/data2.json')
+   .then((result)=>{
+     let copy = [...article, ...result.data];
+     setArticle(copy);
+   })
+   .catch(()=>{
+     console.log('데이터요청에 실패함')
+   })
+ }}>더보기</button>
+ : count == 2 ? 
+ <button onClick={()=>{
+   setCount(count+1)
+   axios.get('https://codingapple1.github.io/shop/data3.json')
+   .then((result)=>{
+     let copy = [...article, ...result.data];
+     setArticle(copy);
+   })
+   .catch(()=>{
+     console.log('데이터요청에 실패함')
+   })
+ }}>더보기</button>
+ : null
+}
         </div>
         
       </> } />
@@ -79,7 +108,6 @@ function Card(props) {
       />
       <h4>{props.article.title}</h4>
       <p>{props.article.price}</p>
-      <button>버튼입니다</button>
     </div>
   );
 }
