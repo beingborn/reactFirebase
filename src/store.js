@@ -1,26 +1,14 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import { createStore } from 'redux';
+import user from "./store/userSlice"
 
 // const store = createStore(rootReducer);
 
 //  Redux의 state 변경 법 
 // - state 수정 함수 만들기
 
-let user = createSlice({
-  name : 'user',                                // state 이름
-  initialState : { name : 'kim' , age : 20},// state 값
-  reducers : {
-    changeName(state) { // state 파라미터 추가 시 기존 스테이트를 뜻함
-      state.name = 'minhuk kim'
-    },
 
-    changeAge(state){
-      state.age += 1
-    },
-  }  
-})
 
-  export let { changeName, changeAge } = user.actions
 
 
 let cart = createSlice({
@@ -34,8 +22,6 @@ let cart = createSlice({
   ],
 
 });
-
-
 
 let stock = createSlice({
   name : 'stock',                                // state 이름
