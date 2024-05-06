@@ -9,9 +9,13 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import About from "./routes/About.js";
 import axios from "axios";
-import Cart from "./routes/Cart.js"
+import Cart from "./routes/Cart.js";
 
 function App() {
+  let obj = { name: "Lee" };
+  let localData = JSON.stringify(obj);
+  localStorage.setItem("data", localData);
+
   let [article, setArticle] = useState(data);
   let navigate = useNavigate();
   let [count, setCount] = useState(1);
@@ -36,7 +40,7 @@ function App() {
             >
               Detail
             </Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/cart">장바구니</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -94,7 +98,7 @@ function App() {
         />
         <Route path="/detail" element={<Detail article={article} />} />
         <Route path="/detail/:id" element={<Detail article={article} />} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart />} />
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<>회사멤버</>} />
@@ -123,6 +127,7 @@ function Card(props) {
         }
         width="80%"
       />
+
       <h4>{props.article.title}</h4>
       <p>{props.article.price}</p>
     </div>
