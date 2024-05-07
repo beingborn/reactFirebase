@@ -8,7 +8,6 @@ function Detail(props) {
   // useEffect 는 html이 모두 렌더링 된 후 실행
   let dispatch = useDispatch();
 
-  // let cartItem = useSelector((state) => state.cart);
 
   let [탭, 탭변경] = useState(0);
 
@@ -25,6 +24,24 @@ function Detail(props) {
   let findProduct = props.article.find(function (x) {
     return x.id == id;
   });
+
+
+  // 자꾸 초기화되는 문제가 있다..
+  useEffect(()=>{
+    
+    let watchedItem = localStorage.getItem("watched")
+    watchedItem = JSON.parse(watchedItem); //let을 사용안하면 되지않나?
+    watchedItem.push(findProduct.id)
+    watchedItem = new Set(watchedItem)
+    watchedItem = Array.from(watchedItem)
+    localStorage.setItem("watched", JSON.stringify(watchedItem)) /// 배열에 업데이트 된 값 추가 
+  }, []) // findProduct가 실행될 때마다 실행
+
+  let browserSee = localStorage.getItem("watched")
+  browserSee = JSON.parse(browserSee)
+
+  let [recentSee , recentChange] = useState(browserSee)
+  console.log(recentSee)
 
   return (
     <div className="container">
@@ -67,7 +84,19 @@ function Detail(props) {
           >
             주문하기
           </button>
+ 
           <Link to="/cart">장바구니 이동</Link>
+
+
+          <p className="recent-wrap">최근 본 상품
+          {
+            recentSee.map((a,i)=>{
+              return(
+              <RecentContent recentSee={recentSee} i={i}></RecentContent>
+              )
+            })
+          }
+          </p>  
         </div>
       </div>
 
@@ -118,6 +147,17 @@ function TabContent(props) {
   if (props.탭 === 2) {
     return <div>내용2</div>;
   }
+}
+
+function RecentContent(props){
+  return(
+    <div className="recent">
+
+      {/* <p>{props.recentSee}</p> */}
+      <img src={ "https://codingapple1.github.io/shop/shoes" + (props.recentSee[props.i]+1) + ".jpg"}width="80px"/>
+      <p>{props.recentSee[props.i]}</p>
+    </div>
+  )
 }
 
 export default Detail;

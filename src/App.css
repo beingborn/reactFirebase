@@ -21,3 +21,13 @@
   opacity : 1;
   transition : opacity 0.5s;
 }
+
+/* 최근본 상품 */
+
+.recent-wrap {
+  background-color: beige;
+  border: 1px solid blue;
+  margin-top: 20px;
+  width: 200px;
+  text-align: center;
+}

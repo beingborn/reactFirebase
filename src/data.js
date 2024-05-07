@@ -19,6 +19,13 @@ let data = [
     content: "Born in the States",
     price: 130000,
   },
+
+  {
+    id: 3,
+    title: "앙 Yordan",
+    content: "부rn in the States",
+    price: 150000,
+  },
 ];
 
 export default data;

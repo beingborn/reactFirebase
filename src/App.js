@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
 import data from "./data.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import About from "./routes/About.js";
@@ -12,9 +12,24 @@ import axios from "axios";
 import Cart from "./routes/Cart.js";
 
 function App() {
-  let obj = { name: "Lee" };
-  let localData = JSON.stringify(obj);
-  localStorage.setItem("data", localData);
+  // let obj = { name: "Lee" };
+  // let localData = JSON.stringify(obj); // array, object JSON 변환
+  // localStorage.setItem("data", localData);
+  // let getData = localStorage.getItem("data")
+
+  // let arrayJson = JSON.parse(getData) // parse => object, array로 변경
+  // console.log(arrayJson.name) // Lee
+
+  useEffect(()=>{
+    const checkLocal = localStorage.getItem('watched')
+
+if( checkLocal === null ) {
+	localStorage.setItem('watched', JSON.stringify([]));
+} else {
+}
+  }, [])
+
+
 
   let [article, setArticle] = useState(data);
   let navigate = useNavigate();
