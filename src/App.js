@@ -4,12 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
 import data from "./data.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState , lazy} from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import About from "./routes/About.js";
 import axios from "axios";
 import Cart from "./routes/Cart.js";
+import { useQuery } from "react-query";
+
+// const Detail = lazy( () => import('./routes/Detail.js') )
+// const Cart = lazy( () => import('./routes/Cart.js') )
 
 function App() {
   // let obj = { name: "Lee" };
@@ -29,15 +33,25 @@ if( checkLocal === null ) {
 }
   }, [])
 
-
-
   let [article, setArticle] = useState(data);
   let navigate = useNavigate();
   let [count, setCount] = useState(1);
 
+
+  let result = useQuery(['작명'] , ()=>{
+      return axios.get('https://codingapple1.github.io/userdata.json').then((res)=>{
+      return res.data
+    })
+  })
+
+
+  // result.data 
+  // result.isLoading
+  // result.error
+
   return (
     <div className="App">
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -56,7 +70,16 @@ if( checkLocal === null ) {
               Detail
             </Nav.Link>
             <Nav.Link href="/cart">장바구니</Nav.Link>
+            {/* <Nav className="me-auto userHello"></Nav> */}
           </Nav>
+
+          <Nav className="ms-auto white">
+            {/* { result.isLoading ? '로딩중' : result.data.name} */}
+            { result.isLoading && '로딩중'}
+            { result.error && '에러남'}
+            { result.data && result.data.name}
+          </Nav>
+            
         </Container>
       </Navbar>
 

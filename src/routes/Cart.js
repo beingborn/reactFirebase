@@ -1,11 +1,19 @@
 import { Table } from "react-bootstrap";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName, increase } from "../store/userSlice.js";
 import { addCount, deleteItem } from "../store.js";
 
+
+// memo == 꼭 필요할 때만 재 렌더링 + props 전송 시 props 값이 변할 때마다 렌더링
+let Child = memo(function(){
+  console.log("재랜더링된거임?")
+  return <div>자식입니다</div>
+})
+
+
 function Cart() {
-  let [bookmark, setBook] = useState(["오징어", "낙지"]);
+  let [count, setCount] = useState(0);
 
   // let a = useSelector((state)=>{return state})
   // console.log(a.stock[0])
@@ -22,6 +30,14 @@ function Cart() {
 
   return (
     <div>
+
+      <Child count={count}></Child>
+      {count}
+      <button onClick={()=>{
+        setCount(count + 1)
+      }}>+</button>
+
+      
       {username}의 장바구니
       {state.user.age}살
       <button
