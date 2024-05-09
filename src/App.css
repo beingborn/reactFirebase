@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "poetsenOne";
+  src: url(/public/font/PoetsenOne-Regular.ttf);
+}
+
 .main-bg {
   height: 300px;
   background-image: url(./img/bg.png);
@@ -5,14 +10,60 @@
   background-position: center;
 }
 
+.inner {
+  padding: 0 20px ;
+}
+
+.footer .inner {
+  display: flex;
+  justify-content: space-around;
+}
+
 .footer {
   position: fixed;
   bottom: 0;
-  background-color: antiquewhite;
+  background-color: #e0e0e0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  padding: 8px 0;
 }
+
+.footer .footer-a {
+  text-decoration: none;
+  padding-top: 36px;
+  display: block;
+  position: relative;
+  color: #000;
+  width: 80px;
+  text-align: center;
+}
+
+.footer .footer-a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.footer .home::before  {
+  background: url(/public/home.svg) no-repeat center;
+}
+
+.footer .content::before {
+  background: url(/public/content.svg) no-repeat center;
+}
+
+.footer .bookmark::before {
+  background: url(/public/book-mark.svg) no-repeat center;
+}
+
+.footer .mypage::before {
+  background: url(/public/mypage.svg) no-repeat center;
+}
+
 
 .start {
   opacity : 0
@@ -32,5 +83,42 @@
   text-align: center;
 }
 
-.user-Hello {
+.user-sayHello {
+  padding-top: 20px;
+}
+
+.user-sayHello .user-name {
+  font-weight: bold;
+}
+
+.user-sayHello p {
+  font-size: 20px;
+}
+
+/* 로딩 페이지 */
+
+.loading-bg {
+  height: 100vh;
+  width: 100vw;
+  background-color: #7B6BF8;
+  z-index: 9999;
+  position: relative;
+}
+
+.loading-txt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.loading-txt p, .loading-txt h2 {
+  color: #fff;
+  white-space: nowrap;
+}
+
+.loading-txt h2 {
+  font-size: 60px;
+  font-family: "poetsenOne";
 }
