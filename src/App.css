@@ -87,11 +87,24 @@
   padding-top: 20px;
 }
 
-.user-sayHello .user-name {
+
+.home-page p {
+  font-size: 20px;
+}
+
+.user-name {
   font-weight: bold;
 }
 
-.user-sayHello p {
+.one-news {
+  text-decoration: none;
+  display: block;
+  padding: 12px 0;
+  padding-left: 8px;
+  width: 100%;
+  background-color: #F3F2FF;
+  border-radius: 8px;
+  color: #000;
   font-size: 20px;
 }
 

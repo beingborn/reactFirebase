@@ -31,8 +31,8 @@ if( checkLocal === null ) {
   let [count, setCount] = useState(1);
 
 
-
-  let result = useQuery(['작명'] , ()=>{
+  // 유저 데이터 받아오기 
+  let result = useQuery(['작명'] , ()=> {
       return axios.get('https://codingapple1.github.io/userdata.json').then((res)=>{
       return res.data
     })
@@ -94,58 +94,22 @@ if( checkLocal === null ) {
         <Route
           path="/"
           element={
-            <>
-              <div className="user-sayHello inner">
-                 <p> 안녕하세요 <span className="user-name">
-                 { result.isLoading && '로딩중'}
-                 { result.error && '에러남'}
-                 { result.data && result.data.name}</span>님!</p>
-                 <p> 오늘도 좋은 하루 보내세요!</p>
-     
-              </div>
-              <div className="container">
-                <div className="row">
-                  {article.map((a, i) => {
-                    return <Card article={article[i]} i={i}></Card>;
-                  })}
-                </div>
-                {count == 1 ? (
-                  <button
-                    onClick={() => {
-                      setCount(count + 1);
-                      axios
-                        .get("https://codingapple1.github.io/shop/data2.json")
-                        .then((result) => {
-                          let copy = [...article, ...result.data];
-                          setArticle(copy);
-                        })
-                        .catch(() => {
-                          console.log("데이터요청에 실패함");
-                        });
-                    }}
-                  >
-                    더보기
-                  </button>
-                ) : count == 2 ? (
-                  <button
-                    onClick={() => {
-                      setCount(count + 1);
-                      axios
-                        .get("https://codingapple1.github.io/shop/data3.json")
-                        .then((result) => {
-                          let copy = [...article, ...result.data];
-                          setArticle(copy);
-                        })
-                        .catch(() => {
-                          console.log("데이터요청에 실패함");
-                        });
-                    }}
-                  >
-                    더보기
-                  </button>
-                ) : null}
-              </div>
-            </>
+            <div className="inner home-page">
+              <p className="user-sayHello">
+              { result.isLoading && '로딩중'}
+              { result.error && '에러남'}
+              안녕하세요 <span className="user-name">{ result.data && result.data.name}</span>님
+              </p>
+              <p>오늘도 좋은 하루되세요!</p>
+
+            <Link to className="one-news">
+             1분 뉴스
+            </Link>
+            <section className="main-catecory">
+              <h2>관심 카테고리</h2>
+            </section>
+
+            </div>
           }
         />
         <Route path="/Loading" element={<Loading />} />
