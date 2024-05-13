@@ -8,6 +8,7 @@ import { useEffect, useState , lazy} from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import About from "./routes/About.js";
+import Test from "./test.js";
 import axios from "axios";
 import Cart from "./routes/Cart.js";
 import Mypage from "./routes/Mypage.js";
@@ -47,23 +48,18 @@ if( checkLocal === null ) {
   }, [])
 
 
-  console.log(loadUi)
-
-  // 과제 로딩 페이지 진입 시 Navbar 숨기기 
-  // 1. state로 상태를 저장해야할듯 , 기본 상태를 true로
-  // 2. 로딩 페이지 진입 시 false로 제작하고 navBar를 선택적으로 보여주는 삼항 연산자를 사용해야할 듯함.
-
-  // result.data 
-  // result.isLoading
-  // result.error
+  const backgroundColor = { 
+    backgroundColor : '#151515',
+  }
 
   return (
-    <div className="App">
+    <div className="App" style={backgroundColor}>
+      <div className="inner">
       {
         loadUi == true ? (
-        <Navbar bg="light" variant="light">
+        <Navbar bg="$gray-700" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">MIDOO</Navbar.Brand>
+            <Navbar.Brand href="#home">MINIBLOG</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link
                 onClick={() => {
@@ -82,6 +78,11 @@ if( checkLocal === null ) {
               <Nav.Link href="/cart">장바구니</Nav.Link>
             </Nav>  
             <Nav className="ms-auto white">
+            <p className="user-sayHello">
+              { result.isLoading && '로딩중'}
+              { result.error && '에러남'}
+              안녕하세요 <span className="user-name">{ result.data && result.data.name}</span>님
+              </p>
             </Nav>              
           </Container>
         </Navbar>)   : null
@@ -90,26 +91,23 @@ if( checkLocal === null ) {
 
 
 
+
+
       <Routes>
         <Route
           path="/"
           element={
-            <div className="inner home-page">
-              <p className="user-sayHello">
-              { result.isLoading && '로딩중'}
-              { result.error && '에러남'}
-              안녕하세요 <span className="user-name">{ result.data && result.data.name}</span>님
-              </p>
-              <p>오늘도 좋은 하루되세요!</p>
+            <div>
+           <MainText></MainText>
+               <div className="col-wrap">
+               {article.map((a, i) => {
+                        return <Card article={article[i]} i={i}></Card>;
+                })}
+                </div>
+           </div>
+           
 
-            <Link to className="one-news">
-             1분 뉴스
-            </Link>
-            <section className="main-catecory">
-              <h2>관심 카테고리</h2>
-            </section>
 
-            </div>
           }
         />
         <Route path="/Loading" element={<Loading />} />
@@ -117,6 +115,7 @@ if( checkLocal === null ) {
         <Route path="/detail/:id" element={<Detail article={article} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/test" element={<Test />} />
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<>회사멤버</>} />
@@ -128,31 +127,57 @@ if( checkLocal === null ) {
 
       <div className="footer">
         <div className="inner">
-        <Link to="/" className="footer-a home">홈</Link>
-        <Link to="/detail/1" className="footer-a content">콘텐츠</Link>
+        <Link to="/" className="footer-a home">이용약관</Link>
+        <Link to="/detail/1" className="footer-a content">개인정보처리방침</Link>
         <Link to="/event" className="footer-a bookmark">북마크</Link>
         <Link to="/mypage" className="footer-a mypage">마이페이지</Link>
         </div>
       </div>
       {/* App */}
+      </div>
     </div>
   );
 }
 
 function Card(props) {
   return (
-    <div className="col-md-4">
+    <div className="card-item">
       <img
         src={
           "https://codingapple1.github.io/shop/shoes" + (props.i + 1) + ".jpg"
         }
-        width="80%"
+        
       />
-
       <h4>{props.article.title}</h4>
       <p>{props.article.price}</p>
     </div>
   );
+}
+
+function MainText(){
+  return (
+    <>
+     <div className="inner home-page">
+            
+            <section className="main-category">
+              <div className="title-group">
+                  <h2 className="main-title">MINI-NOTICE</h2>
+                  <div className="main-sub">
+                    <p>UXUI TREND</p>
+                    <p className="reflect-font">BEST OF 2023</p>
+                    <p>MINIMALISM</p>
+                  </div>
+                  <div className="main-sub">
+                    <p>NEUMORPHISM</p>
+                    <p className="reflect-font">HTML</p>
+                    <p>TEXTURE FONTS</p>
+                  </div>
+              </div>
+            </section>
+
+            </div>
+    </>
+  )
 }
 
 export default App;

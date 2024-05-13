@@ -3,6 +3,26 @@
   src: url(/public/font/PoetsenOne-Regular.ttf);
 }
 
+@font-face {
+  font-family: "ZenDots";
+  src: url(/public/font/ZenDots-Regular.ttf);
+}
+
+:root {
+  background-color: black;
+}
+
+*{
+  color: #fff;
+}
+
+
+.App {
+  height: 100%;
+  position: relative;
+}
+
+
 .main-bg {
   height: 300px;
   background-image: url(./img/bg.png);
@@ -11,59 +31,24 @@
 }
 
 .inner {
-  padding: 0 20px ;
+  width: 1280px;
+  margin: 0px auto;
+  border: 1px solid orange;
 }
 
-.footer .inner {
-  display: flex;
-  justify-content: space-around;
-}
 
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  background-color: #e0e0e0;
   width: 100%;
-  padding: 8px 0;
+  padding: 10px 0;
+  text-align: left;
 }
 
 .footer .footer-a {
   text-decoration: none;
-  padding-top: 36px;
-  display: block;
-  position: relative;
-  color: #000;
-  width: 80px;
-  text-align: center;
+  color: #fff;
 }
-
-.footer .footer-a::before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 32px;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 24px;
-}
-
-.footer .home::before  {
-  background: url(/public/home.svg) no-repeat center;
-}
-
-.footer .content::before {
-  background: url(/public/content.svg) no-repeat center;
-}
-
-.footer .bookmark::before {
-  background: url(/public/book-mark.svg) no-repeat center;
-}
-
-.footer .mypage::before {
-  background: url(/public/mypage.svg) no-repeat center;
-}
-
 
 .start {
   opacity : 0
@@ -134,4 +119,56 @@
 .loading-txt h2 {
   font-size: 60px;
   font-family: "poetsenOne";
+}
+
+/* 메인 */
+
+.main-category{
+  text-align: center;
+  font-family: "ZenDots";
+  position: relative;
+  height: 80vh;
+}
+
+.title-group {
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  transform: translateX(-50%);
+}
+
+.main-title {
+ 
+  font-size: 140px;
+}
+
+.main-sub {
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+  margin: 0px auto;
+}
+
+.main-sub p {
+  font-size: 40px;
+}
+
+.reflect-font {
+  -webkit-text-stroke: 1px #fff;
+  color: transparent;
+}
+
+.col-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-item {
+  width: calc((100% / 3) - 20px);
+  flex: 0 0 auto;
+}
+
+.card-item img {
+  width: 100%;
 }

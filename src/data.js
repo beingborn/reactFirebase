@@ -1,7 +1,7 @@
 let data = [
   {
     id: 0,
-    title: "White and Black",
+    title: "REACT를 배움에 있어서 이런 고충이 있었다.",
     content: "Born in France",
     price: 120000,
   },
@@ -22,6 +22,27 @@ let data = [
 
   {
     id: 3,
+    title: "앙 Yordan",
+    content: "부rn in the States",
+    price: 150000,
+  },
+
+  {
+    id: 4,
+    title: "앙 Yordan",
+    content: "부rn in the States",
+    price: 150000,
+  },
+
+  {
+    id: 5,
+    title: "앙 Yordan",
+    content: "부rn in the States",
+    price: 150000,
+  },
+
+  {
+    id: 6,
     title: "앙 Yordan",
     content: "부rn in the States",
     price: 150000,
