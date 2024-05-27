@@ -1,3 +1,5 @@
+// 해야할 것 지금은 정적이니 useState 배열 만들어놓고 submit 시 업로드
+
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
