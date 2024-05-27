@@ -95,6 +95,8 @@ function App() {
             element={
               <div>
                 <MainText></MainText>
+                <h2 className="col-title">Article<span style={{fontSize : "32px", color : "gray", paddingLeft : "12px"}}>9</span></h2>
+
                 <div className="col-wrap">
                   {article.map((a, i) => {
                     return <Card article={article[i]} i={i}></Card>;
@@ -119,20 +121,23 @@ function App() {
         </Routes>
 
         <div className="footer">
-          <div className="inner">
-            <Link to="/" className="footer-a home">
-              이용약관
-            </Link>
-            <Link to="/detail/1" className="footer-a content">
-              개인정보처리방침
-            </Link>
-            <Link to="/event" className="footer-a bookmark">
-              북마크
-            </Link>
-            <Link to="/mypage" className="footer-a mypage">
-              마이페이지
-            </Link>
-          </div>
+          <div className="foot-top">
+            <div>
+              <Link to="/" className="footer-a home">
+                이용약관
+              </Link>
+              <Link to="/detail/1" className="footer-a content">
+                개인정보처리방침
+              </Link>
+              <Link to="/event" className="footer-a bookmark">
+                북마크
+              </Link>
+              <Link to="/mypage" className="footer-a mypage">
+                마이페이지
+              </Link>
+            </div>
+            <small>2024@copyright-all deserved</small>
+          </div>  
         </div>
         {/* App */}
       </div>
@@ -146,14 +151,16 @@ function Card(props) {
     <div className="card-item">
       <img
         src={
-          "https://codingapple1.github.io/shop/shoes" + (props.i + 1) + ".jpg"
+          "https://beingborn.github.io/gitImage/space-" + (props.i + 1) + ".jpg"
         }
       />
-      <h4>{props.article.title}</h4>
-      <p>{props.article.price}</p>
+      <h4 className="article-title">{props.article.title}</h4>
+      <p>{props.article.content}</p>
     </div>
   );
 }
+// i = 0부터 시작.. 
+// https://beingborn.github.io/gitImage/space-1.jpg
 
 function MainText() {
   return (
@@ -173,6 +180,11 @@ function MainText() {
               <p>TEXTURE FONTS</p>
             </div>
           </div>
+
+          <div className="scroll-info">
+            <p>scroll page</p>
+          </div>
+          
         </section>
       </div>
     </>
