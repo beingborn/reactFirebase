@@ -35,6 +35,20 @@ function Detail(props) {
     watchedItem = new Set(watchedItem)
     watchedItem = Array.from(watchedItem)
     localStorage.setItem("watched", JSON.stringify(watchedItem)) /// 배열에 업데이트 된 값 추가 
+
+
+
+
+   const body = document.querySelector("body");
+   const sub_h = document.querySelector(".sub_h");
+   let wh = window.innerHeight;
+
+   //alert(window.innerHeight);
+
+   sub_h.style.height = wh+"px";
+
+   sub_h.style.height = ( wh - (body.scrollHeight - wh) ) + "px";
+   sub_h.style.position = "relative"
   }, []) // findProduct가 실행될 때마다 실행
 
   let browserSee = localStorage.getItem("watched")
@@ -44,7 +58,7 @@ function Detail(props) {
   console.log(recentSee)
 
   return (
-    <div className="container">
+    <div className="container sub_h">
       {count}
       <button
         onClick={() => {
@@ -59,12 +73,13 @@ function Detail(props) {
       <div className="row">
         <div className="col-md-6">
           <img
-            src="https://codingapple1.github.io/shop/shoes1.jpg"
+            src="https://beingborn.github.io/gitImage/space-1.jpg"
             width="100%"
+            height="100%"
           />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">{findProduct.title}</h4>
+          <h4>{findProduct.title}</h4>
           <p>{findProduct.content}</p>
           <p>{findProduct.price}원</p>
           <button
@@ -72,9 +87,6 @@ function Detail(props) {
             onClick={() => {
               dispatch(
                 addItem({
-                  // id: `${findProduct.title}`,
-                  // name: `${findProduct.content}`,
-                  // count: `${findProduct.price}`,
                   id: 0,
                   name: "White and Black",
                   count: 2,

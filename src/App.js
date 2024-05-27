@@ -45,6 +45,15 @@ function App() {
     if (window.location.pathname == "/Loading") {
       return setloadUi(false);
     }
+
+  // const body = document.querySelector("body");
+  // const sub_h = document.querySelector(".sub_h");
+   //let wh = window.innerHeight;
+
+   //alert(window.innerHeight);
+
+  // sub_h.style.height = wh - (body.scrollHeight - wh);
+
   }, []);
 
   const backgroundColor = {
@@ -82,14 +91,11 @@ function App() {
                 >
                   Home
                 </Nav.Link>
-                <Nav.Link
-                  onClick={() => {
-                    navigate("/detail/0");
-                  }}
-                >
-                  Detail
+                <Nav.Link onClick={() => { navigate("/detail/0"); }}>
+                  상세페이지  
                 </Nav.Link>
-                <Nav.Link href="/cart">장바구니</Nav.Link>
+
+                <Nav.Link href="/cart">관리자페이지</Nav.Link>
               </Nav>
               <Nav className="ms-auto white">
                 <p className="user-sayHello">
