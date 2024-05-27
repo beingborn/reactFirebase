@@ -46,14 +46,13 @@ function App() {
       return setloadUi(false);
     }
 
-  // const body = document.querySelector("body");
-  // const sub_h = document.querySelector(".sub_h");
-   //let wh = window.innerHeight;
+    // const body = document.querySelector("body");
+    // const sub_h = document.querySelector(".sub_h");
+    //let wh = window.innerHeight;
 
-   //alert(window.innerHeight);
+    //alert(window.innerHeight);
 
-  // sub_h.style.height = wh - (body.scrollHeight - wh);
-
+    // sub_h.style.height = wh - (body.scrollHeight - wh);
   }, []);
 
   const backgroundColor = {
@@ -65,15 +64,9 @@ function App() {
     width: "40px",
     height: "40px",
     // backgroundColor:"blue",
-    marginLeft : "32px",
+    marginLeft: "32px",
     // backgroundImg : "url(/public/devicon_google.svg)",
   };
-
-
-
-
-
-
 
   return (
     <div className="App" style={backgroundColor}>
@@ -91,8 +84,12 @@ function App() {
                 >
                   Home
                 </Nav.Link>
-                <Nav.Link onClick={() => { navigate("/detail/0"); }}>
-                  상세페이지  
+                <Nav.Link
+                  onClick={() => {
+                    navigate("/detail/0");
+                  }}
+                >
+                  상세페이지
                 </Nav.Link>
 
                 <Nav.Link href="/cart">관리자페이지</Nav.Link>
@@ -113,14 +110,29 @@ function App() {
         ) : null}
 
         <Routes>
-          <Route path="/" element={
+          <Route
+            path="/"
+            element={
               <div>
                 <MainText></MainText>
-                <h2 className="col-title">Article<span style={{fontSize : "32px", color : "gray", paddingLeft : "12px"}}>9</span></h2>
+                <h2 className="col-title">
+                  Article
+                  <span
+                    style={{
+                      fontSize: "32px",
+                      color: "gray",
+                      paddingLeft: "12px",
+                    }}
+                  >
+                    9
+                  </span>
+                </h2>
 
                 <div className="col-wrap">
                   {article.map((a, i) => {
-                    return <Card article={article[i]} i={i} count={count}></Card>;
+                    return (
+                      <Card article={article[i]} i={i} count={count}></Card>
+                    );
                   })}
                 </div>
               </div>
@@ -158,7 +170,7 @@ function App() {
               </Link>
             </div>
             <small>2024@copyright-all deserved</small>
-          </div>  
+          </div>
           <div className="foot-bottom">
             <SelectBox></SelectBox>
             <Icon naverIcon={naverIcon}></Icon>
@@ -166,7 +178,6 @@ function App() {
         </div>
         {/* App */}
       </div>
-    
     </div>
   );
 }
@@ -186,22 +197,23 @@ function Card(props) {
       <h4 className="article-title">{props.article.title}</h4>
       <p className="article-content">{props.article.content}</p>
       <p className="article-bottom">
+        <span className="author-info">2020.05.14 by 고딩애플</span>
 
-        <span className="author-info">
-          2020.05.14
-          by 고딩애플
-        </span>
-        
-        
         <span>
-         <a style={{cursor:"pointer"}} onClick={()=>{setLikeCount(likeCount + 1)}} className="heartIcon">{likeCount}</a>
+          <a
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setLikeCount(likeCount + 1);
+            }}
+            className="heartIcon"
+          >
+            {likeCount}
+          </a>
         </span>
       </p>
     </div>
   );
 }
-
-
 
 function MainText() {
   return (
@@ -225,7 +237,6 @@ function MainText() {
           <div className="scroll-info">
             <p>scroll page</p>
           </div>
-          
         </section>
       </div>
     </>
@@ -233,33 +244,35 @@ function MainText() {
 }
 
 const SelectBox = () => {
-	return (
-		<select className="select-box">
-			<option key="banana" value="banana">
-				바나나
-			</option>
-			<option key="apple" value="apple">사과</option>
-			<option key="orange" value="orange">오렌지</option>
-		</select>
-	);
+  return (
+    <select className="select-box">
+      <option key="banana" value="banana">
+        바나나
+      </option>
+      <option key="apple" value="apple">
+        사과
+      </option>
+      <option key="orange" value="orange">
+        오렌지
+      </option>
+    </select>
+  );
 };
 
-function Icon(props){
-  return(
+function Icon(props) {
+  return (
     <div className="sns-wrap">
-          <a className="google" href="https://google.com" style={props.naverIcon}>
-            <img src="/devicon_google.svg"></img>
-          </a>
-          <a className="kakao" href="https://kakao.com"  style={props.naverIcon}>
-          <img src="/devicon-kakao.svg"></img>
-          </a>
-          <a className="naver" href="https://naver.com"  style={props.naverIcon}>
-          <img src="/devicon-naver.svg"></img>
-          </a>
+      <a className="google" href="https://google.com" style={props.naverIcon}>
+        <img src="/devicon_google.svg"></img>
+      </a>
+      <a className="kakao" href="https://kakao.com" style={props.naverIcon}>
+        <img src="/devicon-kakao.svg"></img>
+      </a>
+      <a className="naver" href="https://naver.com" style={props.naverIcon}>
+        <img src="/devicon-naver.svg"></img>
+      </a>
     </div>
-  )
+  );
 }
-
-
 
 export default App;

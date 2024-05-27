@@ -7,14 +7,14 @@
   font-family: "ZenDots";
   src: url(/public/font/ZenDots-Regular.ttf);
 }
-html { height:100%; }
+html {
+  height: 100%;
+}
 body {
   height: 100%;
-  position: relative; 
+  position: relative;
   z-index: -10000;
 }
-
-
 
 .main-bg {
   position: absolute;
@@ -33,13 +33,11 @@ body {
 
 .App {
   z-index: -1000;
-
 }
 
 .inner {
   width: 1280px;
   margin: 0px auto;
-
 }
 
 .footer {
@@ -83,10 +81,19 @@ body {
 /* 최근본 상품 */
 
 .recent-wrap {
-  background-color: beige;
+  position: absolute;
+  right: 0px;
   margin-top: 20px;
   width: 200px;
   text-align: center;
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px 0;
+  z-index: 999;
+}
+
+.row {
+  width: 1080px;
 }
 
 .user-sayHello {
@@ -139,7 +146,10 @@ table {
   margin-top: 40px;
 }
 
-.table_custom {--bs-table-bg : transparent!important; --bs-table-color : #fff!important}
+.table_custom {
+  --bs-table-bg: transparent !important;
+  --bs-table-color: #fff !important;
+}
 
 .loading-txt p,
 .loading-txt h2 {
@@ -198,26 +208,28 @@ table {
 }
 
 .scroll-info::before {
-  content: '';
+  content: "";
   display: block;
   width: 24px;
   height: 24px;
   background: url(/public/mouse-icon.svg) no-repeat center;
   margin: 0px auto;
-  animation-name: updown ;
+  animation-name: updown;
   animation-iteration-count: infinite;
-  animation-duration: .5s; /* 애니메이션의 지속 시간 설정 */
+  animation-duration: 0.5s; /* 애니메이션의 지속 시간 설정 */
   animation-direction: alternate; /* 애니메이션이 양방향으로 반복 */
   position: relative;
   bottom: 8px;
 }
 
 @keyframes updown {
-  0% {bottom: 4px;}
-  100% {bottom: 8px;}
+  0% {
+    bottom: 4px;
+  }
+  100% {
+    bottom: 8px;
+  }
 }
-
-
 
 .col-wrap {
   display: flex;
@@ -239,7 +251,7 @@ table {
 }
 
 .card-item img {
-  width: 100%;  
+  width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 4px;
@@ -249,7 +261,6 @@ table {
   font-family: "ZenDots";
   margin-bottom: 20px;
   font-size: 36px;
-  
 }
 
 .article-title {
@@ -259,7 +270,6 @@ table {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
 }
 
 .foot-bottom {
@@ -269,10 +279,9 @@ table {
   justify-content: space-between;
 }
 
-
-
-.select-box, .select-box option {
-  color: #000
+.select-box,
+.select-box option {
+  color: #000;
 }
 
 .select-box {
@@ -282,7 +291,6 @@ table {
   border-radius: 4px;
   border: 2px solid #fff;
 
-  
   color: #fff;
 }
 
@@ -310,7 +318,7 @@ table {
 }
 
 .heartIcon::after {
-  content: '';
+  content: "";
   display: inline-block;
   width: 28px;
   height: 28px;
