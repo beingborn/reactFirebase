@@ -14,6 +14,7 @@ import Cart from "./routes/Cart.js";
 import Mypage from "./routes/Mypage.js";
 import Loading from "./routes/Loading.js";
 import { useQuery } from "react-query";
+import { count } from "firebase/firestore";
 
 function App() {
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
 
   let [article, setArticle] = useState(data);
   let navigate = useNavigate();
-  let [count, setCount] = useState(1);
+  let [count, setCount] = useState(0);
 
   // 유저 데이터 받아오기
   let result = useQuery(["작명"], () => {
@@ -50,8 +51,24 @@ function App() {
     backgroundColor: "#151515",
   };
 
+  const naverIcon = {
+    display: "inline-block",
+    width: "40px",
+    height: "40px",
+    // backgroundColor:"blue",
+    marginLeft : "32px",
+    // backgroundImg : "url(/public/devicon_google.svg)",
+  };
+
+
+
+
+
+
+
   return (
     <div className="App" style={backgroundColor}>
+      <div className="main-bg"></div>
       <div className="inner">
         {loadUi == true ? (
           <Navbar bg="$gray-700" variant="dark">
@@ -90,16 +107,14 @@ function App() {
         ) : null}
 
         <Routes>
-          <Route
-            path="/"
-            element={
+          <Route path="/" element={
               <div>
                 <MainText></MainText>
                 <h2 className="col-title">Article<span style={{fontSize : "32px", color : "gray", paddingLeft : "12px"}}>9</span></h2>
 
                 <div className="col-wrap">
                   {article.map((a, i) => {
-                    return <Card article={article[i]} i={i}></Card>;
+                    return <Card article={article[i]} i={i} count={count}></Card>;
                   })}
                 </div>
               </div>
@@ -140,16 +155,21 @@ function App() {
           </div>  
           <div className="foot-bottom">
             <SelectBox></SelectBox>
+            <Icon naverIcon={naverIcon}></Icon>
           </div>
         </div>
         {/* App */}
       </div>
-      <div className="main-bg"></div>
+    
     </div>
   );
 }
 
+// 현재 구현해야할 것 우선 props로 count를 함께 받아와야할 것 같음.. 그래야 해당 카운트를 늘릴 수 있으니까 데이터 자료에 포함되어야할 것같고
+// 해당 count를 useState에 담아서 놓고 함수를 통해 임의로 그걸 + 1 해야겠음.
+
 function Card(props) {
+  let [likeCount, setLikeCount] = useState(props.article.like);
   return (
     <div className="card-item">
       <img
@@ -158,12 +178,24 @@ function Card(props) {
         }
       />
       <h4 className="article-title">{props.article.title}</h4>
-      <p>{props.article.content}</p>
+      <p className="article-content">{props.article.content}</p>
+      <p className="article-bottom">
+
+        <span className="author-info">
+          2020.05.14
+          by 고딩애플
+        </span>
+        
+        
+        <span>
+         <a style={{cursor:"pointer"}} onClick={()=>{setLikeCount(likeCount + 1)}} className="heartIcon">{likeCount}</a>
+        </span>
+      </p>
     </div>
   );
 }
-// i = 0부터 시작.. 
-// https://beingborn.github.io/gitImage/space-1.jpg
+
+
 
 function MainText() {
   return (
@@ -205,6 +237,23 @@ const SelectBox = () => {
 		</select>
 	);
 };
+
+function Icon(props){
+  return(
+    <div className="sns-wrap">
+          <a className="google" href="https://google.com" style={props.naverIcon}>
+            <img src="/devicon_google.svg"></img>
+          </a>
+          <a className="kakao" href="https://kakao.com"  style={props.naverIcon}>
+          <img src="/devicon-kakao.svg"></img>
+          </a>
+          <a className="naver" href="https://naver.com"  style={props.naverIcon}>
+          <img src="/devicon-naver.svg"></img>
+          </a>
+    </div>
+  )
+}
+
 
 
 export default App;

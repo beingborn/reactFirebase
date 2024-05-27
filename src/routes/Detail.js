@@ -100,7 +100,7 @@ function Detail(props) {
         </div>
       </div>
 
-      <Nav variant="tabs" defaultActiveKey="link0">
+      {/* <Nav variant="tabs" defaultActiveKey="link0">
         <Nav.Item>
           <Nav.Link
             onClick={() => {
@@ -131,7 +131,7 @@ function Detail(props) {
             버튼2
           </Nav.Link>
         </Nav.Item>
-      </Nav>
+      </Nav> */}
       <TabContent 탭={탭} />
     </div>
   );
