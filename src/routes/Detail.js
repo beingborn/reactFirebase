@@ -110,10 +110,12 @@ function Detail(props) {
   // box-shadow:  20px 20px 60px #292929,              -20px -20px 60px #373737;
 
   return (
-    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#303030", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
+    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
       {/* {alert == true ? (
         <div className="alert alert-warning">4초이내 구매시 할인</div>
       ) : null} */}
+          <p>{findProduct.date}일 발행</p>
+
       <DetailTitle>
         {findProduct.title}
 
@@ -126,15 +128,8 @@ function Detail(props) {
 
       </DetailTitle>
       <div className="row">
-        <div className="col-md-4">
-          <img
-            src="https://beingborn.github.io/gitImage/space-1.jpg"
-            width="100%"
-            height="100%"
-          />
-        </div>
+
         <div className="col-md-8">
-          
           <p>
             {findProduct.content}
             {/* {
@@ -142,13 +137,7 @@ function Detail(props) {
                 return (<span>{line}<br/></span>)
               })
             } */}
-            
           </p>
-          <p>{findProduct.date}일 발행</p>
-
-            
-          
-
           <p className="recent-wrap">
             최근 본 상품
             {recentSee.map((a, i) => {
@@ -159,10 +148,26 @@ function Detail(props) {
           </p>
         </div>
 
+        <div className="col-md-4">
+          <img
+            src="https://beingborn.github.io/gitImage/space-1.jpg"
+            width="100%"
+            height="100%"
+          />
+        </div>
+
+
+
+
+
+
+
         <div className="template-wrap">
-          <h4>댓글</h4>
+          <h4>댓글 <span style={{fontSize: "1.2em", color: "gray",paddingLeft: "4px",}}>3</span></h4>
+
           <TodoTemplate></TodoTemplate>
         </div>
+
       </div>
     </div>
   );

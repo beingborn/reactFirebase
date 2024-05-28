@@ -12,10 +12,11 @@ const TodoTemplateBlock = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
+  scroll-color : #151515 , #ffffff
 `;
 
 const Comment = styled.span`
-  color: #000;
+  color: #fff;
 `;
 
 
@@ -58,12 +59,12 @@ function TodoTemplate({ children }) {
         return (
           <div className="comment" key={i}>
             <div className="user-image"></div>
-            <Comment className="user" style={{marginLeft : "12px"}}>{item.user}</Comment>
-
-            <Comment className="content">
-              {item.content}
-            </Comment>
-
+              <div>
+                <Comment className="user" style={{marginLeft : "12px", fontWeight:"bold", fontSize: "18px",}}>{item.user}</Comment>
+                <Comment className="content" style={{marginLeft : "16px"}}>
+                  {item.content}
+                </Comment>
+              </div>
             <Comment style={{marginLeft : "auto"}}>6일 전</Comment>
           </div>
         );
