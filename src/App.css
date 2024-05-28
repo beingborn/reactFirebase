@@ -310,7 +310,7 @@ table {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: 160px;
+  /* padding-bottom: 160px; */
 }
 
 .card-item {

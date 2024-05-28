@@ -8,7 +8,8 @@ let data = [
     `,
     price: 120000,
     like: 3,
-    date : "2024-02-24"
+    date : "2024-02-24",
+    source : "https://unsplash.com"
   },
 
   {
@@ -18,6 +19,8 @@ let data = [
     price: 110000,
     like: 5,
     date : "2024-02-25",
+    source : "https://unsplash.com"
+
   },
 
   {
@@ -27,7 +30,7 @@ let data = [
     price: 130000,
     like: 7,
     date : "2024-02-28",
-
+    source : "https://unsplash.com"
   },
 
   {
@@ -37,6 +40,7 @@ let data = [
     price: 150000,
     like: 3,
     date : "2024-03-28",
+    source : "https://unsplash.com"
 
   },
 
@@ -47,6 +51,8 @@ let data = [
     price: 150000,
     like: 12,
     date : "2024-03-28",
+    source : "https://unsplash.com"
+
   },
 
   {
@@ -56,6 +62,8 @@ let data = [
     price: 150000,
     like: 15,
     date : "2024-04-28",
+    source : "https://unsplash.com"
+
   },
 
   {
@@ -65,6 +73,8 @@ let data = [
     price: 150000,
     like:20,
     date : "2024-05-28",
+    source : "https://unsplash.com"
+
 
   },
 
@@ -75,6 +85,8 @@ let data = [
     price: 150000,
     like:22,
     date : "2024-07-28",
+    source : "https://unsplash.com"
+
 
   },
 
@@ -85,6 +97,8 @@ let data = [
     price: 150000,
     like:30,
     date : "2024-08-28",
+    source : "https://unsplash.com"
+
   },
 ];
 

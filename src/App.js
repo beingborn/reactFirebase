@@ -16,6 +16,7 @@ import Loading from "./routes/Loading.js";
 import { useQuery } from "react-query";
 import { count } from "firebase/firestore";
 
+
 function App() {
   useEffect(() => {
     const checkLocal = localStorage.getItem("watched");
@@ -147,6 +148,19 @@ function App() {
                     );
                   })}
                 </div>
+
+                  <p style={{width : "100vw", marginLeft : "calc(-50vw + 50%)", height: "400px", position : "relative", marginBottom: "80px", marginTop: "120px"}}>
+                    <video style={{objectFit : "cover"}} width="100%" height="100%" loop autoPlay muted >
+                        <source src="/video/space-video.mp4" type="video/mp4" />
+                    </video>
+                    <div className="video-bg" style={{width:"100%", height:"100%", backgroundColor : "black", opacity: "0.8", position: "absolute", left : "0", top: "0"}}></div>
+                    <div className="video-text" style={{position : "absolute", top: "50%", left: "50%", transform : "translate(-50%, -50%)", textAlign: "center"} }>
+                      <h4 style={{fontFamily: "ZenDots" , fontSize : "44px"}}>MY FIRST VIDEO TAG IN REACT</h4>
+                      <p style={{fontSize: "20px"}}>please subscribing my blog!</p>
+                      <button>subscribe</button>
+                    </div>
+                  </p>
+
               </div>
             }
           />

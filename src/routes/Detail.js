@@ -109,11 +109,13 @@ function Detail(props) {
   // background: #303030;
   // box-shadow:  20px 20px 60px #292929,              -20px -20px 60px #373737;
 
-  return (
-    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
-      {/* {alert == true ? (
+        {/* {alert == true ? (
         <div className="alert alert-warning">4초이내 구매시 할인</div>
       ) : null} */}
+
+  return (
+    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
+
           <p>{findProduct.date}일 발행</p>
 
       <DetailTitle>
@@ -131,13 +133,14 @@ function Detail(props) {
 
         <div className="col-md-8">
           <p>
-            {findProduct.content}
-            {/* {
+            {/* {findProduct.content} */}
+            {
               findProduct.content.split('\n').map(line=>{
                 return (<span>{line}<br/></span>)
               })
-            } */}
+            }
           </p>
+          <p style={{fontSize: "14px", color: "gray"}}>출처 : {findProduct.source}</p>
           <p className="recent-wrap">
             최근 본 상품
             {recentSee.map((a, i) => {
@@ -149,11 +152,7 @@ function Detail(props) {
         </div>
 
         <div className="col-md-4">
-          <img
-            src="https://beingborn.github.io/gitImage/space-1.jpg"
-            width="100%"
-            height="100%"
-          />
+          <img src={`https://beingborn.github.io/gitImage/space-${findProduct.id + 1}.jpg`} width="100%" height="100%"/>
         </div>
 
 

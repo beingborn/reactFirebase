@@ -12,7 +12,8 @@ const TodoTemplateBlock = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  scroll-color : #151515 , #ffffff
+
+}
 `;
 
 const Comment = styled.span`
