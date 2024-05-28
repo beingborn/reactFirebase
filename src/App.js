@@ -5,7 +5,7 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
 import data from "./data.js";
 import { useEffect, useState, lazy } from "react";
-import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, Outlet, useHistory } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import About from "./routes/About.js";
 import Test from "./test.js";
@@ -27,7 +27,16 @@ function App() {
   }, []);
 
   let [article, setArticle] = useState(data);
+
   let navigate = useNavigate();
+
+  // const navigateToDetail = (i) => {
+  //   navigate(`/detail/${i}`);
+  // }
+
+
+
+
   let [count, setCount] = useState(0);
 
   // 유저 데이터 받아오기
@@ -39,12 +48,15 @@ function App() {
       });
   });
 
+
+
   let [loadUi, setloadUi] = useState(true);
 
   useEffect(() => {
     if (window.location.pathname == "/Loading") {
       return setloadUi(false);
     }
+
 
     // const body = document.querySelector("body");
     // const sub_h = document.querySelector(".sub_h");
@@ -131,7 +143,7 @@ function App() {
                 <div className="col-wrap">
                   {article.map((a, i) => {
                     return (
-                      <Card article={article[i]} i={i} count={count}></Card>
+                      <Card article={article[i]} i={i} count={count} ></Card>
                     );
                   })}
                 </div>
@@ -185,12 +197,13 @@ function App() {
 // 현재 구현해야할 것 우선 props로 count를 함께 받아와야할 것 같음.. 그래야 해당 카운트를 늘릴 수 있으니까 데이터 자료에 포함되어야할 것같고
 // 해당 count를 useState에 담아서 놓고 함수를 통해 임의로 그걸 + 1 해야겠음.
 
-function Card(props) {
+function Card(props ) {
   let [likeCount, setLikeCount] = useState(props.article.like);
   return (
-    <div className="card-item">
+    <div className="card-item" style={{cursor:"pointer"}} key={props.i}>
+      
       <img
-        src={
+      src={
           "https://beingborn.github.io/gitImage/space-" + (props.i + 1) + ".jpg"
         }
       />

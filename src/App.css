@@ -16,12 +16,21 @@ body {
   z-index: -10000;
 }
 
+.col-md-6 {
+  height: 300px;
+}
+
+.book , .heartDetail {
+  background-color: transparent; 
+   border: 0;
+}
+
 .main-bg {
   position: absolute;
   right: 0px;
   top: 0px;
   width: 100%;
-  height: 50%;
+  height: 80%;
   /* z-index: -1000; */
   background: url(/public/orange-rebg.png) no-repeat center;
   background-size: cover;
@@ -29,6 +38,15 @@ body {
 
 * {
   color: #fff;
+}
+
+input {
+  color: #000;
+}
+
+.comment {
+  border: 1px solid black;
+  margin-top: 40px;
 }
 
 .App {
@@ -81,8 +99,8 @@ body {
 /* 최근본 상품 */
 
 .recent-wrap {
-  position: absolute;
-  right: 0px;
+  position: fixed;
+  right: 20px;
   margin-top: 20px;
   width: 200px;
   text-align: center;
@@ -93,7 +111,7 @@ body {
 }
 
 .row {
-  width: 1080px;
+  /* width: 1080px; */
 }
 
 .user-sayHello {
@@ -246,8 +264,37 @@ table {
   padding-bottom: 60px;
 }
 
+.card-item h4, .card-item p {
+  padding: 0 12px;
+}
+
 .article-content {
   height: 48px;
+  overflow: hidden;
+  white-space: ellipsis;
+}
+
+.book , .heartDetail {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.book::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: aqua;
+  margin-left: 8px;
+}
+
+.heartDetail::after{
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: aqua;
+  margin-left: 8px;
 }
 
 .card-item img {
