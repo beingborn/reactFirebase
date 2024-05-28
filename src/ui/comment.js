@@ -4,13 +4,12 @@ import styled from "styled-components";
 
 const TodoTemplateBlock = styled.div`
   width: 100%;
-  height: auto;
-  border: 1px solid blue;
+  height: 300px;
+  overflow: auto;
+ 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-  background: white;
-  border-radius: 16px;
+  
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
-  margin-top: 16px;
   display: flex;
   flex-direction: column;
 `;
@@ -29,7 +28,7 @@ function TodoTemplate({ children }) {
   const onChange = event => setComment(event.target.value); // change 이벤트 시 댓글 임시 저장 공간에 value 값을 저장한다.
 
   // 기존 댓글 리스트
-  const [userCommentList , setList] = useState([{ user: "penguin", content: "그러셨군요" },{ user: "penguin2", content: "그러셨군요2" },{ user: "penguin33", content: "그러셨군요3" },])
+  const [userCommentList , setList] = useState([{ user: "@penguin123", content: "맘아프셨겠소 관공" },{ user: "@aristotelles", content: "인생이 뭐길래.." },{ user: "penguin33", content: "그러셨군요3" },])
 
   
   const onSubmit = event => {
@@ -43,12 +42,13 @@ function TodoTemplate({ children }) {
   }
 
   return (
+   
     <TodoTemplateBlock>
       {children}
       <div className="comment-wrap" onSubmit={onSubmit}>
         <form className="comment-box">
           <input type="text" placeholder="댓글을 달아주세요" onChange={onChange} value={userComment}/>
-          <button className="comment-check">올리기</button>
+          <button className="comment-check" style={{backgroundColor : "orange"}}>POST</button>
         </form>
       </div>
 
@@ -57,13 +57,14 @@ function TodoTemplate({ children }) {
       {userCommentList.map((item, i) => {
         return (
           <div className="comment" key={i}>
-            <Comment className="user">{item.user}</Comment>
+            <div className="user-image"></div>
+            <Comment className="user" style={{marginLeft : "12px"}}>{item.user}</Comment>
 
             <Comment className="content">
               {item.content}
-
-
             </Comment>
+
+            <Comment style={{marginLeft : "auto"}}>6일 전</Comment>
           </div>
         );
       })}

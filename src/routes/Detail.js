@@ -58,6 +58,19 @@ function Detail(props) {
   });
 
   let [count, setCount] = useState(findProduct.like)
+
+  const styled = {
+      border: "2px solid rgba(255,255,255,0.2)",
+      background: "rgba(255,255,255,0.4)",
+      borderRadius: "10px",
+      zIndex: "2",
+      overflow: "hidden",
+      backdropFilter: "blur(5px)",
+      webkitBackdropFilter: "blur(5px)",
+      border: "2px solid rgba(0,0,0,0.2)",
+      background: "rgba(0,0,0,0.4)",
+    
+  }
   
   
 
@@ -76,9 +89,10 @@ function Detail(props) {
 
     //alert(window.innerHeight);
 
-    sub_h.style.height = wh + "px";
+    // sub_h.style.height = wh + "px";
+    // sub_h.style.height = wh - (body.scrollHeight - wh) + "px";
 
-    sub_h.style.height = wh - (body.scrollHeight - wh) + "px";
+    // sub_h.style.height = wh - (body.scrollHeight - wh) + "px";
     sub_h.style.position = "relative";
 
 
@@ -91,12 +105,12 @@ function Detail(props) {
 
   let [recentSee, recentChange] = useState(browserSee);
 
-    
+  // border-radius: 50px;
+  // background: #303030;
+  // box-shadow:  20px 20px 60px #292929,              -20px -20px 60px #373737;
 
   return (
-    <div className="container sub_h detail-b" style={{top: "40px"}}>
-
-
+    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#303030", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
       {/* {alert == true ? (
         <div className="alert alert-warning">4초이내 구매시 할인</div>
       ) : null} */}
@@ -104,10 +118,7 @@ function Detail(props) {
         {findProduct.title}
 
         <div>
-          <button className="book" onClick={() => {dispatch( addItem({ id: 0, name: "White and Black", count: 2,}));}}>북마크</button>
-
-            
-            
+          <button className="book" onClick={() => {dispatch( addItem({ id: 0, name: "White and Black", count: 2,}));}}>북마크</button>  
           <button className="heartDetail" onClick={() => {setCount(count + 1);}}>{count}</button>
            
             
@@ -135,7 +146,7 @@ function Detail(props) {
           </p>
           <p>{findProduct.date}일 발행</p>
 
-       
+            
           
 
           <p className="recent-wrap">
@@ -148,7 +159,8 @@ function Detail(props) {
           </p>
         </div>
 
-        <div>
+        <div className="template-wrap">
+          <h4>댓글</h4>
           <TodoTemplate></TodoTemplate>
         </div>
       </div>
