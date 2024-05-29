@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <BrowserRouter basename="https://beingborn.github.io/react-projects">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
