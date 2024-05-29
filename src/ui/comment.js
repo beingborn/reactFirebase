@@ -38,7 +38,7 @@ function TodoTemplate({ children }) {
     if (userComment === ''){ // 공백 일 시 안되게 제작
     return;
     }
-    const newComment = {user : 'newUser', content : userComment} // 댓글 값을 content에 넣고 user는 newUser 통일
+    const newComment = {user : '@newUser', content : userComment} // 댓글 값을 content에 넣고 user는 newUser 통일
     setList(userCommentList => [newComment, ...userCommentList]) // 입력 받은 값을 userCommentList 값에 추가 
     setComment('') // 공백 값 입력 시 그게 전달되도록? 근데 이 위치에 있어도 되는건가?
   }

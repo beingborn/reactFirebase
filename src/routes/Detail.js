@@ -11,7 +11,9 @@ import styled from "styled-components";
 const DetailTitle = styled.h4`
   font-size : 32px;
   font-weight : 700;
-  margin-bottom : 48px;  
+  margin-bottom : 32px;
+  padding-bottom : 16px;
+  border-bottom : 1px solid #333;  
   display: flex;
   justify-content : space-between;
 `
@@ -43,12 +45,12 @@ function Detail(props) {
 
   let [탭, 탭변경] = useState(0);
 
-  let [alert, setAlert] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setAlert(false);
-    }, 4000);
-  }, []);
+  // let [alert, setAlert] = useState(true);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setAlert(false);
+  //   }, 4000);
+  // }, []);
 
 
 
@@ -57,7 +59,9 @@ function Detail(props) {
     return x.id == id;
   });
 
-  let [count, setCount] = useState(findProduct.like)
+
+
+
 
   const styled = {
       border: "2px solid rgba(255,255,255,0.2)",
@@ -104,27 +108,60 @@ function Detail(props) {
   browserSee = JSON.parse(browserSee);
 
   let [recentSee, recentChange] = useState(browserSee);
+  
+  let [count, setCount] = useState(findProduct.like)
+  let [countClick, setClick] = useState(1)
+  let [bookClick, setBook] = useState(true)
 
-  // border-radius: 50px;
-  // background: #303030;
-  // box-shadow:  20px 20px 60px #292929,              -20px -20px 60px #373737;
+  let addLike = () => {
+    let heartSrc = document.querySelector('.heart-svg')
+    setClick(countClick + 1)  
 
-        {/* {alert == true ? (
-        <div className="alert alert-warning">4초이내 구매시 할인</div>
-      ) : null} */}
+    if (countClick % 2 == 1) { 
+    setCount (count + 1);
+    heartSrc.classList.add('heart-on')
+
+    }  else if (countClick % 2 == 0) {
+    setCount (count - 1);
+    heartSrc.classList.remove('heart-on')
+    }
+  }
+
+  let addBook = () => {
+    let bookSrc = document.querySelector('.book-svg')
+    if (bookClick == true) {
+      bookSrc.classList.add('book-on');
+      window.confirm("북마크 저장 완료! 해당 페이지로 이동하시겠습니까?")
+      setBook(false)
+    } else {
+      bookSrc.classList.remove('book-on')
+      setBook(true)
+    }
+  }
+
+
+
+  // 북마크 기능 .. cartItem처럼 하면 될 것 같은데
 
   return (
-    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "20px 20px 60px #292929, -20px -20px 60px #373737;", padding:"32px" , borderRadius:"50px",}}>
+    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "rgba(0,0,0,0.3)", padding:"32px 32px 20px 32px" , borderRadius:"50px",}}>
 
-          <p>{findProduct.date}일 발행</p>
+          <p>{findProduct.date}일 발행 <span style={{fontSize: "15px", color : "lightgray", paddingLeft : "8px"}}>{findProduct.author}</span></p>
 
       <DetailTitle>
         {findProduct.title}
-
+        {/* {dispatch( addItem({ id: 0, name: "White and Black", count: 2,}));} */}
         <div>
-          <button className="book" onClick={() => {dispatch( addItem({ id: 0, name: "White and Black", count: 2,}));}}>북마크</button>  
-          <button className="heartDetail" onClick={() => {setCount(count + 1);}}>{count}</button>
-           
+          <button className="book" onClick={addBook}>
+            북마크
+            <span className="book-svg"></span>
+          </button>  
+          <button className="heartDetail"
+           onClick={addLike}
+            
+            >{count}
+          <span className="heart-svg"></span>  
+          </button>
             
         </div>
 
@@ -142,7 +179,7 @@ function Detail(props) {
           </p>
           <p style={{fontSize: "14px", color: "gray"}}>출처 : {findProduct.source}</p>
           <p className="recent-wrap">
-            최근 본 상품
+            <span className="recent-title">최근 본 상품</span>
             {recentSee.map((a, i) => {
               return (
                 <RecentContent recentSee={recentSee} i={i}></RecentContent>
@@ -177,18 +214,21 @@ function Detail(props) {
 
 function RecentContent(props) {
   return (
-    <div className="recent">
-      {/* <p>{props.recentSee}</p> */}
-      <img
-        src={
-          "https://beingborn.github.io/gitImage/space-" +
-          (props.recentSee[props.i] + 1) +
-          ".jpg"
-        }
-        width="80px"
-      />
-      <p>{props.recentSee[props.i]}</p>
-    </div>
+      <div className="recent-bx">
+        <div className="recent">
+          {/* <p>{props.recentSee}</p> */}
+          <img
+            src={
+              "https://beingborn.github.io/gitImage/space-" +
+              (props.recentSee[props.i] + 1) +
+              ".jpg"
+            }
+            width="100%"
+          />
+        </div>
+        <p>{props.recentSee[props.i]}</p>
+      </div>
+    
   );
 }
 

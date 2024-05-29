@@ -43,7 +43,7 @@ function App() {
   // 유저 데이터 받아오기
   let result = useQuery(["작명"], () => {
     return axios
-      .get("https://codingapple1.github.io/userdata.json")
+      .get("https://beingborn.github.io/gitImage/userdata.json")
       .then((res) => {
         return res.data;
       });
@@ -144,7 +144,9 @@ function App() {
                 <div className="col-wrap">
                   {article.map((a, i) => {
                     return (
-                      <Card article={article[i]} i={i} count={count} ></Card>
+                      <>
+                      <Card article={article[i]} i={i} count={count} navigate={navigate}></Card>
+                      </>
                     );
                   })}
                 </div>
@@ -157,7 +159,7 @@ function App() {
                     <div className="video-text" style={{position : "absolute", top: "50%", left: "50%", transform : "translate(-50%, -50%)", textAlign: "center"} }>
                       <h4 style={{fontFamily: "ZenDots" , fontSize : "44px"}}>MY FIRST VIDEO TAG IN REACT</h4>
                       <p style={{fontSize: "20px"}}>please subscribing my blog!</p>
-                      <button>subscribe</button>
+                      <button className="subscribe">subscribe</button>
                     </div>
                   </p>
 
@@ -211,10 +213,12 @@ function App() {
 // 현재 구현해야할 것 우선 props로 count를 함께 받아와야할 것 같음.. 그래야 해당 카운트를 늘릴 수 있으니까 데이터 자료에 포함되어야할 것같고
 // 해당 count를 useState에 담아서 놓고 함수를 통해 임의로 그걸 + 1 해야겠음.
 
-function Card(props ) {
+
+
+function Card(props) {
   let [likeCount, setLikeCount] = useState(props.article.like);
   return (
-    <div className="card-item" style={{cursor:"pointer"}} key={props.i}>
+    <div className="card-item" style={{cursor:"pointer"}} key={props.i} onClick={() => {props.navigate(`/detail/${props.article.id}`);}}>
       
       <img
       src={
@@ -273,14 +277,17 @@ function MainText() {
 const SelectBox = () => {
   return (
     <select className="select-box">
-      <option key="banana" value="banana">
-        바나나
+      <option key="korean" value="korean">
+        한국어
       </option>
-      <option key="apple" value="apple">
-        사과
+      <option key="english" value="english">
+        영어
       </option>
-      <option key="orange" value="orange">
-        오렌지
+      <option key="japanese" value="japanese">
+        일본어
+      </option>
+      <option key="chinese" value="chinese">
+        중국어
       </option>
     </select>
   );

@@ -1,3 +1,6 @@
+
+
+
 @font-face {
   font-family: "poetsenOne";
   src: url(/public/font/PoetsenOne-Regular.ttf);
@@ -16,8 +19,27 @@ body {
   z-index: -10000;
 }
 
+.navbar-brand {
+  font-family: "ZenDots";
+}
+
+.subscribe {
+  padding: 8px 12px;
+  background-color: orange;
+  border: 0;
+  border-radius: 4px;
+}
+
 .col-md-6 {
   height: 300px;
+}
+
+.row .col-md-4 {
+  max-height: 300px;
+}
+
+.row .col-md-4 img {
+  object-fit: cover;
 }
 
 .book , .heartDetail {
@@ -157,10 +179,10 @@ input {
   right: 20px;
   bottom: 20px;
   margin-top: 20px;
-  width: 200px;
+  width: 140px;
   text-align: center;
-  background-color: #303030;
-  /* box-shadow: 20px 20px 60px #292929, -20px -20px 60px #373737; */
+  background-color: #151515;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.3), -20px -20px 60px rgba(0,0,0,0.3);
   padding: 20px 0;
   border-radius: 32px;
   z-index: 999;
@@ -169,6 +191,26 @@ input {
 
 .row {
   /* width: 1080px; */
+}
+
+.recent {
+  height: 60px;
+  padding: 0 20px;
+}
+
+.recent-bx{
+  margin-top: 20px;
+}
+
+.recent-title {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.recent img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .user-sayHello {
@@ -337,7 +379,7 @@ table {
   font-weight: 700;
 }
 
-.book::after {
+/* .book::after {
   content: '';
   display: inline-block;
   width: 28px;
@@ -346,17 +388,44 @@ table {
   margin-left: 8px;
   background-size: contain;
 
-}
+} */
 
-.heartDetail::after{
+/* .heartDetail::after{
   content: '';
   display: inline-block;
   width: 28px;
   height: 28px;
   background: url(/public/ph_heart-bold.svg)no-repeat center;
   background-size: contain;
-
   margin-left: 8px;
+} */
+
+.book-svg {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: url(/public/book-mark-out.svg)no-repeat center;
+  margin-left: 8px;
+  background-size: contain;
+}
+
+.book-on {
+  background: url(/public/book-mark-on.svg) no-repeat center;
+  background-size: contain;
+}
+
+.heart-svg {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: url(/public/ph_heart-bold.svg)no-repeat center;
+  background-size: contain;
+  margin-left: 8px;
+}
+
+.heart-on {
+  background: url(/public/ph_heart-bold-on.svg) no-repeat center;
+  background-size: contain;
 }
 
 .card-item img {
