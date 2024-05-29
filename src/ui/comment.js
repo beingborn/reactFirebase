@@ -32,6 +32,7 @@ function TodoTemplate({ children }) {
   // 기존 댓글 리스트
   const [userCommentList , setList] = useState([{ user: "@penguin123", content: "맘아프셨겠소 관공" },{ user: "@aristotelles", content: "인생이 뭐길래.." },{ user: "penguin33", content: "그러셨군요3" },])
 
+  let commentCount = userCommentList.length; //얘를 전달하고 싶은데..
   
   const onSubmit = event => {
     event.preventDefault(); // // 서브밋 이벤트 발생 시 기본 폼 제출 동작 막기
@@ -44,9 +45,9 @@ function TodoTemplate({ children }) {
   }
 
   return (
-   
     <TodoTemplateBlock>
       {children}
+      <h4>댓글 <span style={{fontSize: "1.2em", color: "gray",paddingLeft: "4px", position: "relative",}}>{commentCount}</span></h4>
       <div className="comment-wrap" onSubmit={onSubmit}>
         <form className="comment-box">
           <input type="text" placeholder="댓글을 달아주세요" onChange={onChange} value={userComment}/>
@@ -66,7 +67,7 @@ function TodoTemplate({ children }) {
                   {item.content}
                 </Comment>
               </div>
-            <Comment style={{marginLeft : "auto"}}>6일 전</Comment>
+            <Comment style={{marginLeft : "auto"}}>1일 전</Comment>
           </div>
         );
       })}

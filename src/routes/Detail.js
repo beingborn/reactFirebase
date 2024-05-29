@@ -132,6 +132,11 @@ function Detail(props) {
     if (bookClick == true) {
       bookSrc.classList.add('book-on');
       window.confirm("북마크 저장 완료! 해당 페이지로 이동하시겠습니까?")
+      // 컨펌 true를 누를 시
+      // store.js에 addItem()함수로 해당 findProduct id, content, 저자 전송하기
+      // 리디렉션 자동으로 시켜주기
+      // 컨펌 false를 누를 시 return; 시켜주어서 classList.remove 해주기
+
       setBook(false)
     } else {
       bookSrc.classList.remove('book-on')
@@ -150,6 +155,7 @@ function Detail(props) {
 
       <DetailTitle>
         {findProduct.title}
+        {/* dispatch가 store에 addItem 해주는 거인듯. addItem id에 findProduct 값들 전달해주면 될듯 그리고 값을 좀 줄여놓고 */}
         {/* {dispatch( addItem({ id: 0, name: "White and Black", count: 2,}));} */}
         <div>
           <button className="book" onClick={addBook}>
@@ -199,8 +205,7 @@ function Detail(props) {
 
 
         <div className="template-wrap">
-          <h4>댓글 <span style={{fontSize: "1.2em", color: "gray",paddingLeft: "4px",}}>3</span></h4>
-
+          {/* <h4>댓글 <span style={{fontSize: "1.2em", color: "gray",paddingLeft: "4px",}}>3</span></h4> */}
           <TodoTemplate></TodoTemplate>
         </div>
 

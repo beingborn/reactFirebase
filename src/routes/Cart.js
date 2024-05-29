@@ -12,7 +12,6 @@ let Child = memo(function(){
   return <div>안녕하세요 관리자님!</div>
 })
 
-
 function Cart() {
 
 
@@ -68,9 +67,9 @@ function Cart() {
       <Table className="table_custom" >
         <thead>
           <tr>
-            <th>상품인덱스</th>
+            <th>글 인덱스</th>
             <th>상품명</th>
-            <th>재고개수</th>
+            <th>저자명</th>
             <th>변경하기</th>
           </tr>
         </thead>

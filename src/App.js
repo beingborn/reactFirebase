@@ -228,7 +228,8 @@ function Card(props) {
       <h4 className="article-title">{props.article.title}</h4>
       <p className="article-content">{props.article.content}</p>
       <p className="article-bottom">
-        <span className="author-info">2020.05.14 by 고딩애플</span>
+        <span className="author-info">
+          {props.article.date} {props.article.author}</span>
 
         <span>
           <a
