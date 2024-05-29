@@ -46,6 +46,7 @@ body {
 
 .row .col-md-4 img {
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .book , .heartDetail {

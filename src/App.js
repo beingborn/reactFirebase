@@ -102,10 +102,10 @@ function App() {
                     navigate("/detail/0");
                   }}
                 >
-                  상세페이지
+                  Article
                 </Nav.Link>
 
-                <Nav.Link href="/cart">관리자페이지</Nav.Link>
+                <Nav.Link href="/cart">Bookmark</Nav.Link>
               </Nav>
               <Nav className="ms-auto white">
                 <p className="user-sayHello">

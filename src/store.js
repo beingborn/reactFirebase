@@ -87,8 +87,20 @@ let cart = createSlice({
       state.splice(deleteItemId, 1); // 전달 받은 id 값 1개를 배열에서 삭제합니다.
     },
 
-    reset(state) {
-      Object.assign(state, initialState);
+    reset(state, action) {
+      state.map((i)=>{
+        console.log(i)
+      })
+      // let copyState = [...state]
+      // copyState.forEach((i)=>{
+      //   if(i <= copyState.length){
+      //     copyState.splice(0,i)
+      //   }
+      // })
+      
+      // copyState = state
+      
+      // Object.assign(state, initialState);
     }
 
   },

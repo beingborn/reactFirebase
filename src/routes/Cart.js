@@ -90,7 +90,7 @@ function Cart() {
         
         <Child count={count}></Child>
         <p style={{fontWeight : "bold", marginLeft : "12px"}}>{cartItem.length}개의 글
-            <button className="delete" style={{marginLeft : "12px"}} onClick={() => { dispatch(reset(state));}}>전체 삭제</button>
+            <button className="delete" style={{marginLeft : "12px"}} onClick={() => { dispatch(reset());}}>전체 삭제</button>
         </p>
       </div>
 
