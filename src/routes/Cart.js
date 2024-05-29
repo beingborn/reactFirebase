@@ -2,17 +2,58 @@ import { Table } from "react-bootstrap";
 import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName, increase } from "../store/userSlice.js";
-import { addCount, deleteItem } from "../store.js";
+import { addCount, deleteItem, reset} from "../store.js";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 
 
 // memo == 꼭 필요할 때만 재 렌더링 + props 전송 시 props 값이 변할 때마다 렌더링
-let Child = memo(function(){
-  console.log("재랜더링된거임?")
-  return <div>안녕하세요 관리자님!</div>
-})
+
 
 function Cart() {
+
+  const styled = {
+    border: "2px solid rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.6)",
+    borderRadius: "10px",
+    zIndex: "2",
+    overflow: "hidden",
+    backdropFilter: "blur(5px)",
+    webkitBackdropFilter: "blur(5px)",
+    border: "2px solid rgba(0,0,0,0.2)",
+    background: "rgba(0,0,0,0.4)",
+    padding : "32px",
+}
+
+
+
+  let result = useQuery(["작명"], () => {
+    return axios
+      .get("https://beingborn.github.io/gitImage/userdata.json")
+      .then((res) => {
+        return res.data;
+        
+      });
+  });
+ 
+  let Child = memo(function(){
+    return(
+          <p className="user-sayHello">
+          {result.isLoading && "로딩중"}
+          {result.error && "에러남"}
+          {" "}
+          <span className="user-name">
+            {result.data && result.data.name}
+          </span>
+        님의 북마크
+      </p>
+    )
+             
+  })
+  
+
+
 
 
   useEffect(()=>{
@@ -28,16 +69,13 @@ function Cart() {
    
    }, []) 
 
-
   let [count, setCount] = useState(0);
 
 
   let state = useSelector((state) => state);
-  let username = useSelector((state) => state.user.name);
 
-
-  // cartItem을 state로 받은것에 할당하겠다.
   let cartItem = useSelector((state) => state.cart);
+
   let dispatch = useDispatch(); // store.js 로 요청 보내주는 함수
 
   let tableStyle = {
@@ -46,25 +84,17 @@ function Cart() {
   }
 
   return (
-    <div className="sub_h">
+    <div className="sub_h cart-wrap" style={styled}>
 
-      <Child count={count}></Child>
-      
-      {/* <button onClick={()=>{
-        setCount(count + 1)
-      }}>+</button> */}
+      <div className="book-flex">
+        
+        <Child count={count}></Child>
+        <p style={{fontWeight : "bold", marginLeft : "12px"}}>{cartItem.length}개의 글
+            <button className="delete" style={{marginLeft : "12px"}} onClick={() => { dispatch(reset(state));}}>전체 삭제</button>
+        </p>
+      </div>
 
-      
-      {username}의 블로그 글 목록
-      {state.user.age}개의 글
-      <button
-        onClick={() => {
-          dispatch(increase(100));
-        }}
-      >
-        나이를 먹자
-      </button>
-      <Table className="table_custom" >
+      <Table className="table_custom" id="table-main" >
         <thead>
           <tr>
             <th>글 인덱스</th>
@@ -74,29 +104,25 @@ function Cart() {
           </tr>
         </thead>
         <tbody>
-          {/* <td>{cartItem[0].id}</td>
-      <td>{cartItem[0].name}</td>
-      <td>{cartItem[0].count}</td> */}
 
           {/* 반복문 사용시 key 속성을 사용해 주면 좋다. */}
           {cartItem.map((a, i) => {
             return (
               <tr key={i}>
-                <td>{cartItem[i].id}번</td>
+
+                <td className="item-index">{cartItem[i].id}번
+                
+                {
+                  cartItem[i].label ? <div className="label-new">NEW !</div> : null
+                }
+                
+                </td>
                 <td>{cartItem[i].title}</td>
-                <td>{cartItem[i].like}개</td>
+                <td>{cartItem[i].author}</td>
                 <td>
-                  <button
-                    onClick={() => {
-                      dispatch(addCount(state.cart[i].id)); // state 값 옆 아이디를 의미
-                    }}
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => {
-                      dispatch(deleteItem(state.cart[i].id)); // state 값 옆 아이디 받기
-                    }}
+                  {/* <button onClick={() => { dispatch(addCount(state.cart[i].like)); }}>+</button> */}
+                  <button className="delete"
+                    onClick={() => { dispatch(deleteItem(state.cart[i].id));}}
                   >
                     삭제하기
                   </button>

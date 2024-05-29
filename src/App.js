@@ -218,15 +218,16 @@ function App() {
 function Card(props) {
   let [likeCount, setLikeCount] = useState(props.article.like);
   return (
-    <div className="card-item" style={{cursor:"pointer"}} key={props.i} onClick={() => {props.navigate(`/detail/${props.article.id}`);}}>
-      
-      <img
-      src={
-          "https://beingborn.github.io/gitImage/space-" + (props.i + 1) + ".jpg"
-        }
-      />
-      <h4 className="article-title">{props.article.title}</h4>
-      <p className="article-content">{props.article.content}</p>
+    <div className="card-item" style={{cursor:"pointer"}} key={props.i} >
+      <div className="card-click" onClick={() => {props.navigate(`/detail/${props.article.id}`);}}>
+        <img
+        src={
+            "https://beingborn.github.io/gitImage/space-" + (props.i + 1) + ".jpg"
+          }
+        />
+        <h4 className="article-title">{props.article.title}</h4>
+        <p className="article-content">{props.article.content}</p>
+      </div>
       <p className="article-bottom">
         <span className="author-info">
           {props.article.date} {props.article.author}</span>

@@ -1,7 +1,7 @@
 // 해야할 것 지금은 정적이니 useState 배열 만들어놓고 submit 시 업로드
 
 import { useEffect, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { addItem } from "../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +13,10 @@ const DetailTitle = styled.h4`
   font-weight : 700;
   margin-bottom : 32px;
   padding-bottom : 16px;
-  border-bottom : 1px solid #333;  
+  border-bottom : 1px solid lightgray;  
   display: flex;
   justify-content : space-between;
 `
-
 
 
 const LikeBook = styled.span`
@@ -27,6 +26,8 @@ const LikeBook = styled.span`
 function Detail(props) {
   // useEffect 는 html이 모두 렌더링 된 후 실행
   let dispatch = useDispatch();
+  let navigate = useNavigate()
+
 
   const location = useLocation();
 
@@ -63,18 +64,9 @@ function Detail(props) {
 
 
 
-  const styled = {
-      border: "2px solid rgba(255,255,255,0.2)",
-      background: "rgba(255,255,255,0.4)",
-      borderRadius: "10px",
-      zIndex: "2",
-      overflow: "hidden",
-      backdropFilter: "blur(5px)",
-      webkitBackdropFilter: "blur(5px)",
-      border: "2px solid rgba(0,0,0,0.2)",
-      background: "rgba(0,0,0,0.4)",
-    
-  }
+
+
+  // top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "rgba(0,0,0,0.3)", padding:"32px 32px 20px 32px" , borderRadius:"50px",
   
   
 
@@ -127,15 +119,29 @@ function Detail(props) {
     }
   }
 
-  let addBook = () => {
-    let bookSrc = document.querySelector('.book-svg')
-    if (bookClick == true) {
-      bookSrc.classList.add('book-on');
-      window.confirm("북마크 저장 완료! 해당 페이지로 이동하시겠습니까?")
+  
       // 컨펌 true를 누를 시
       // store.js에 addItem()함수로 해당 findProduct id, content, 저자 전송하기
       // 리디렉션 자동으로 시켜주기
       // 컨펌 false를 누를 시 return; 시켜주어서 classList.remove 해주기
+
+  let addBook = () => {
+    let bookSrc = document.querySelector('.book-svg')
+    if (bookClick == true) {
+      bookSrc.classList.add('book-on');
+      if (window.confirm("북마크 저장 완료! 해당 페이지로 이동하시겠습니까?")){
+        navigate("/cart")
+        dispatch(
+           addItem({ id: findProduct.id , title : findProduct.title, like: findProduct.like, author : findProduct.author})
+        );
+      } else {
+        dispatch(
+          addItem({ id: findProduct.id , title : findProduct.title, like: findProduct.like, author : findProduct.author})
+       );
+       return  
+      }
+
+
 
       setBook(false)
     } else {
@@ -144,12 +150,28 @@ function Detail(props) {
     }
   }
 
+  const detailBox = {
+    border: "2px solid rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.4)",
+    borderRadius: "10px",
+    zIndex: "2",
+    backdropFilter: "blur(5px)",
+    webkitBackdropFilter: "blur(5px)",
+    border: "2px solid rgba(0,0,0,0.2)",
+    background: "rgba(0,0,0,0.4)",
+    width: "100%",
+    top: "0px",
+    padding: "32px 32px 20px 32px",
+    boxShadow : "rgba(0,0,0,0.3)"   
+}
+
+    // overflow: "hidden",
 
 
   // 북마크 기능 .. cartItem처럼 하면 될 것 같은데
 
   return (
-    <div className="container sub_h detail-b" style={{top: "0px", width: "1024px", backgroundColor: "#111111", boxShadow: "rgba(0,0,0,0.3)", padding:"32px 32px 20px 32px" , borderRadius:"50px",}}>
+    <div className="container sub_h detail-b" style={detailBox}>
 
           <p>{findProduct.date}일 발행 <span style={{fontSize: "15px", color : "lightgray", paddingLeft : "8px"}}>{findProduct.author}</span></p>
 

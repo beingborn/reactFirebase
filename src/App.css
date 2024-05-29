@@ -28,6 +28,12 @@ body {
   background-color: orange;
   border: 0;
   border-radius: 4px;
+  font-weight: 600;
+}
+
+.hi-user {
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .col-md-6 {
@@ -176,18 +182,34 @@ input {
 
 .recent-wrap {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: -200px;
+  bottom: -20px;
   margin-top: 20px;
   width: 140px;
   text-align: center;
-  background-color: #151515;
-  box-shadow: 20px 20px 60px rgba(0,0,0,0.3), -20px -20px 60px rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
+  border: 2px solid rgba(0,0,0,0.2);
+  box-shadow: rgba(0,0,0,0.3);
   padding: 20px 0;
-  border-radius: 32px;
+  border-radius: 10px;
   z-index: 999;
+  --webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   
 }
+/* 
+border: "2px solid rgba(255,255,255,0.2)",
+background: "rgba(255,255,255,0.4)",
+borderRadius: "10px",
+zIndex: "2",
+backdropFilter: "blur(5px)",
+webkitBackdropFilter: "blur(5px)",
+border: "2px solid rgba(0,0,0,0.2)",
+background: "rgba(0,0,0,0.4)",
+width: "100%",
+top: "0px",
+padding: "32px 32px 20px 32px",
+boxShadow : "rgba(0,0,0,0.3)"    */
 
 .row {
   /* width: 1080px; */
@@ -217,12 +239,23 @@ input {
   padding-top: 20px;
 }
 
+.cart-wrap .user-sayHello {
+  font-size: 32px;
+  font-weight: 700;
+}
+
 .home-page p {
   font-size: 20px;
 }
 
 .user-name {
   font-weight: bold;
+}
+
+.book-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .one-news {
@@ -266,6 +299,37 @@ table {
 .table_custom {
   --bs-table-bg: transparent !important;
   --bs-table-color: #fff !important;
+}
+
+.delete {
+  background-color: orange;
+  border: 0;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#table-main td {
+  padding: 1em;
+}
+
+.item-index {
+  position: relative;
+}
+
+.label-new {
+  position: absolute;
+  /* top: -10px; */
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: orange;
+  background-color: #151515;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: 700;
+  /* width: 100px; */
+  /* height: 20px; */
+  /* background-color: blue; */
 }
 
 .loading-txt p,
