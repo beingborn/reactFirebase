@@ -59,6 +59,8 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
 
+  "homepage": "https://beingborn.github.io/react-projects"
+  
 }

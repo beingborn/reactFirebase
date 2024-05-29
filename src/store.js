@@ -88,11 +88,13 @@ let cart = createSlice({
     },
 
     reset(state, action) {
+      //alert(state.length);
       state.map((i)=>{
-        console.log(i)
+        //console.log(i)
+        state.splice(0,state.length); // 전달 받은 id 값 1개를 배열에서 삭제합니다.
       })
       // let copyState = [...state]
-      // copyState.forEach((i)=>{
+      // copyState.forEach((항목,i)=>{
       //   if(i <= copyState.length){
       //     copyState.splice(0,i)
       //   }
