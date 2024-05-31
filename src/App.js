@@ -88,7 +88,9 @@ function App() {
         {loadUi == true ? (
           <Navbar bg="$gray-700" variant="dark">
             <Container>
-              <Navbar.Brand href="#home">MINIBLOG</Navbar.Brand>
+              <Navbar.Brand onClick={()=> {
+                navigate("/");
+              }}>MINIBLOG</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link
                   onClick={() => {
@@ -105,7 +107,8 @@ function App() {
                   Article
                 </Nav.Link>
 
-                <Nav.Link href="/cart">Bookmark</Nav.Link>
+                  {/* 해당 부분 */}
+                <Nav.Link onClick={()=>{navigate("/cart")}}>Bookmark</Nav.Link> 
               </Nav>
               <Nav className="ms-auto white">
                 <p className="user-sayHello">
@@ -123,22 +126,11 @@ function App() {
         ) : null}
 
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
+          <Route path="/" element={ <div>
                 <MainText></MainText>
                 <h2 className="col-title">
                   Article
-                  <span
-                    style={{
-                      fontSize: "32px",
-                      color: "gray",
-                      paddingLeft: "12px",
-                    }}
-                  >
-                    9
-                  </span>
+                  <span style={{ fontSize: "32px", color: "gray", paddingLeft: "12px", }}>9</span>
                 </h2>
 
                 <div className="col-wrap">
@@ -153,7 +145,7 @@ function App() {
 
                   <p style={{width : "100vw", marginLeft : "calc(-50vw + 50%)", height: "400px", position : "relative", marginBottom: "80px", marginTop: "120px"}}>
                     <video style={{objectFit : "cover"}} width="100%" height="100%" loop autoPlay muted >
-                        <source src="/video/space-video.mp4" type="video/mp4" />
+                        <source src = {process.env.PUBLIC_URL + '/video/space-video.mp4'} type="video/mp4" />
                     </video>
                     <div className="video-bg" style={{width:"100%", height:"100%", backgroundColor : "black", opacity: "0.8", position: "absolute", left : "0", top: "0"}}></div>
                     <div className="video-text" style={{position : "absolute", top: "50%", left: "50%", transform : "translate(-50%, -50%)", textAlign: "center"} }>
@@ -179,6 +171,7 @@ function App() {
           </Route>
 
           <Route path="*" element={<div>없는페이지임</div>} />
+
         </Routes>
 
         <div className="footer">
@@ -187,7 +180,7 @@ function App() {
               <Link to="/" className="footer-a home">
                 이용약관
               </Link>
-              <Link to="/detail/1" className="footer-a content">
+              <Link to="/cart" className="footer-a content">
                 개인정보처리방침
               </Link>
               <Link to="/event" className="footer-a bookmark">
@@ -299,13 +292,13 @@ function Icon(props) {
   return (
     <div className="sns-wrap">
       <a className="google" href="https://google.com" style={props.naverIcon}>
-        <img src="/devicon_google.svg"></img>
+        <img src={process.env.PUBLIC_URL + '/devicon_google.svg'}></img>
       </a>
       <a className="kakao" href="https://kakao.com" style={props.naverIcon}>
-        <img src="/devicon-kakao.svg"></img>
+        <img src={process.env.PUBLIC_URL + '/devicon-kakao.svg'}></img>
       </a>
       <a className="naver" href="https://naver.com" style={props.naverIcon}>
-        <img src="/devicon-naver.svg"></img>
+        <img src={process.env.PUBLIC_URL + '/devicon-naver.svg'}></img>
       </a>
     </div>
   );
